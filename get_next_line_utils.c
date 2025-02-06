@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaterna <mmaterna@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 17:05:15 by mmaterna          #+#    #+#             */
-/*   Updated: 2025/01/30 09:48:29 by mmaterna         ###   ########.fr       */
+/*   Created: 2025/02/06 08:39:20 by mmaterna          #+#    #+#             */
+/*   Updated: 2025/02/06 09:13:53 by mmaterna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,30 @@ size_t	ft_strlen(char *s)
 
 char	*str_join(char *s1, char *s2)
 {
-	char	*result;
-	size_t	len1;
-	size_t	len2;
+	char	*res;
+	size_t	l1;
+	size_t	l2;
 	size_t	i;
-	size_t	j;
 
-	len1 = 0;
-	if (s1)
-		len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	result = malloc(len1 + len2 + 1);
-	if (!result)
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	res = malloc(l1 + l2 + 1);
+	if (!res)
 		return (NULL);
 	i = 0;
-	while (i < len1)
+	while (i < l1)
 	{
-		result[i] = s1[i];
+		res[i] = s1[i];
 		i++;
 	}
-	j = 0;
-	while (j++ < len2)
-		result[len1 + j] = s2[j];
-	result[len1 + len2] = '\0';
+	while (i < l1 + l2)
+	{
+		res[i] = s2[i - l1];
+		i++;
+	}
+	res[i] = '\0';
 	free(s1);
-	return (result);
+	return (res);
 }
 
 char	*get_line(char *str)
